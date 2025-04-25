@@ -108,3 +108,7 @@ def example(count: int, name: str, fail: bool, loglevel: str) -> None:
     logger.debug("MYPROJECT - Example CLI Tool")
     for n in range(count):
         logger.info(f"Hello {name}! {n}")
+
+
+if __name__ == "__main__":
+    example()
