@@ -1,2 +1,2 @@
-# python-project
-Clean python project base using VSCode, pyproject.toml, uv, ruff
+# python-extension-project
+Clean c++ and nanobind python project base using VSCode, vcpkg, pyproject.toml, uv, ruff
