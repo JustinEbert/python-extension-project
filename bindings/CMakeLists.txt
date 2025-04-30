@@ -8,7 +8,6 @@ nanobind_add_module(myextension
 target_link_libraries(myextension PRIVATE myextension_core)
 
 install(TARGETS myextension
-    RUNTIME DESTINATION ${PYTHON_SITEARCH}   # .pyd on Windows
-    LIBRARY DESTINATION ${PYTHON_SITEARCH}   # .so on Linux/macOS
-    MODULE DESTINATION ${PYTHON_SITEARCH}    # for MODULE targets
+  RUNTIME DESTINATION .    # .pyd on Windows → <venv>/Lib/site-packages/
+  LIBRARY DESTINATION .    # .so/.dylib on Unix → <venv>/lib/pythonX.Y/site-packages/
 )
