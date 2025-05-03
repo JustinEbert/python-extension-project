@@ -10,11 +10,19 @@ int main() {
     if (res.delta_mass > 0.0f) {
         std::cout << "✔ Test passed: delta_mass = " 
                   << res.delta_mass << std::endl;
-        return 0;
     }
     else {
         std::cerr << "✘ Test FAILED: delta_mass = " 
                   << res.delta_mass << std::endl;
-        return 1;
+    }
+
+    // Check that current_mass is positive
+    if (res.current_mass > 0.0f) {
+        std::cout << "✔ Test passed: current_mass = " 
+                  << res.current_mass << std::endl;
+    }
+    else {
+        std::cerr << "✘ Test FAILED: current_mass = " 
+                  << res.current_mass << std::endl;
     }
 }

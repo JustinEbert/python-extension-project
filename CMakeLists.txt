@@ -1,8 +1,13 @@
 cmake_minimum_required(VERSION 3.18)
-project(myextension LANGUAGES CXX)
 
-# There seems to be an unsolvable at this time problem with vcpkg integrate install so hard setting this for now
-include("C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/scripts/buildsystems/vcpkg.cmake")
+# On Windows, if the environment variable VCPKG_ROOT is not set, fall back to the default VS‑Community install path:
+if(WIN32 AND NOT DEFINED ENV{VCPKG_ROOT})
+    set(ENV{VCPKG_ROOT}
+        "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg")
+    message(STATUS "VCPKG_ROOT not defined; falling back to 'C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg'")
+endif()
+
+project(myextension LANGUAGES CXX)
 
 # Enable testing
 include(CTest)

@@ -11,7 +11,7 @@ GrowthResult step(float dt) {
     constexpr float k = 0.1f;
     float delta = k * dt;
     total_mass += delta;
-    return { delta };
+    return { delta, total_mass };
 }
 
 } // namespace myextension

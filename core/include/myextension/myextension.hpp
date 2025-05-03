@@ -5,7 +5,7 @@ namespace myextension {
 /// Result of one growth step.
 struct GrowthResult {
     float delta_mass;
-    // …extend with more fields as needed…
+    float current_mass;
 };
 
 /// Reset simulation state.

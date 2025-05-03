@@ -14,5 +14,6 @@ NB_MODULE(myextension, m) {
           "Advance by dt seconds", "dt"_a);
 
     nb::class_<myextension::GrowthResult>(m, "GrowthResult")
-      .def_ro("delta_mass", &myextension::GrowthResult::delta_mass);
+      .def_ro("delta_mass", &myextension::GrowthResult::delta_mass)
+      .def_ro("current_mass", &myextension::GrowthResult::current_mass);
 }
