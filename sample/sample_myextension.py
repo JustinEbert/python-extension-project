@@ -1,6 +1,3 @@
-import math
-import time
-
 import dearpygui.dearpygui as dpg
 import myextension
 from sample_utils import enable_windows_dark_titlebar
@@ -22,7 +19,7 @@ dpg.show_viewport()
 enable_windows_dark_titlebar("Sample")
 
 # Plot some data from the extension, showing that the C++ bindings work
-with dpg.window(label="Extension Data Plot"), dpg.plot(label="Extension Data", height=400, width=500):
+with dpg.window(label="Data Plot", pos=(50, 50), no_collapse=True), dpg.plot(label="Extension Data", height=400, width=500):
     dpg.add_plot_axis(dpg.mvXAxis, label="Index")
     dpg.add_plot_axis(dpg.mvYAxis, label="Value", tag="y_axis")
     dpg.add_line_series(list(range(len(results))), list(results), label="Data", parent="y_axis")
