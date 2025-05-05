@@ -35,7 +35,7 @@ dependencies = [
   "wheel>=0.45.1",
 ]
 
-#scripts.myextension-cli = "myextension.example_cli:example"
+#scripts.myextension-sample = "myextension.sample:main"
 
 [tool.hatch.build.targets.wheel]
 #packages = [ "src/myextension" ]

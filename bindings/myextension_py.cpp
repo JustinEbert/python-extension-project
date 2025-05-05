@@ -1,19 +1,19 @@
+#include "myextension/myextension.hpp"
+
 #include <nanobind/nanobind.h>
-#include <myextension/myextension.hpp>
 
 namespace nb = nanobind;
-using namespace nb::literals;
 
 NB_MODULE(myextension, m) {
-    m.doc() = "Python extension scaffolding";
-
-    m.def("initialize", &myextension::initialize,
-          "Reset simulation state");
-
-    m.def("step", &myextension::step,
-          "Advance by dt seconds", "dt"_a);
-
-    nb::class_<myextension::GrowthResult>(m, "GrowthResult")
-      .def_ro("delta_mass", &myextension::GrowthResult::delta_mass)
-      .def_ro("current_mass", &myextension::GrowthResult::current_mass);
-}
+      m.doc() = "MyExtension: sim_value sampler";
+  
+      m.def("sim_value",
+          [] (float t) {
+              // a static local inside the lambda is fine
+              static myextension::Sampler sampler;
+              return sampler.sim_value(t);
+          },
+          "Generate a randomly varying amplitude & period sine at time t",
+          nb::arg("t"));
+  }
+  
