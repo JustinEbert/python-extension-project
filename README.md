@@ -16,7 +16,7 @@ Currently the workflow is through a wheel so this takes much longer
 than desired.  Need to implement an in-situ dev cycle for the extension.
 
 Steps:  
-1) git clone python-extension-project  
+1) git clone [python-extension-project  ](https://github.com/JustinEbert/python-extension-project)
 2) uv sync from terminal in the cloned directory
 3) open the workspace in Visual Code
 4) Build desired target  
