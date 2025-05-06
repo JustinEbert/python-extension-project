@@ -6,7 +6,7 @@ Requirements:
 https://visualstudio.microsoft.com/vs/community/  
 Be sure to check the box to install vcpkg for C++ package management  
 Ideally set the environment var to reach vcpkg but it will fallback to the default vs community location  
-   > setx VCPKG_ROOT "<path_to_your_vcpkg_installation>
+   > setx VCPKG_ROOT "<path_to_your_vcpkg_installation>"
 
 2) UV  Python Package Manager  
 https://docs.astral.sh/uv/getting-started/installation/  
