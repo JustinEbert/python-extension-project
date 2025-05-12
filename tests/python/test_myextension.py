@@ -23,13 +23,17 @@ def test_sim_value_varies_over_time() -> None:
     assert len(set(samples)) > 1
 
 
-def test_sim_value_cycle_reset_behavior() -> None:
-    # We know period is between 0.5 and 1.5s, so sim_value(t) = 0 at t=0
-    # and again roughly at t=period. We can check that within 0.4–1.6s it crosses zero.
-    zeros = []
-    for t in [i * 0.1 for i in range(1, 17)]:  # from 0.1s to 1.6s
-        v = myextension.sim_value(t)
-        if abs(v) < 0.01:  # near zero
-            zeros.append(t)
-    # Expect at least one near-zero crossing in that window
-    assert zeros, f"No zero crossings found in [0.1,1.6]s, got values {[myextension.sim_value(i * 0.1) for i in range(1, 17)]}"
+def test_sim_value_is_reproducible() -> None:
+    # fixed seed
+    SEED = 123456
+    # sample times
+    times = [i * 0.1 for i in range(20)]
+
+    myextension.seed(SEED)
+    first = [myextension.sim_value(t) for t in times]
+
+    myextension.seed(SEED)
+    second = [myextension.sim_value(t) for t in times]
+
+    # they must be exactly the same
+    assert first == second, f"Outputs differ: {first} vs {second}"

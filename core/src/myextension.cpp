@@ -4,28 +4,35 @@
 
 namespace myextension {
 
-Sampler::Sampler()
-  : cycle_start_(0.0f),
-    // initial period 0.5–1.5s, amplitude 0.1–1.0
-    period_dist_(0.5f, 1.5f),
-    amp_dist_(0.1f, 1.0f),
-    rng_(std::random_device{}())
+Sampler::Sampler(uint32_t seed)
+  : cycleStart(0.0f),
+    periodDist(0.5f, 1.5f),
+    ampDist(0.1f, 1.0f),
+    rng(seed)
 {
-    period_ = period_dist_(rng_);
-    amp_    = amp_dist_(rng_);
+    // initialize the first cycle
+    period    = periodDist(rng);
+    amplitude = ampDist(rng);
+}
+
+void Sampler::seed(uint32_t s) {
+    rng.seed(s);
+    cycleStart = 0.0f;
+    period     = periodDist(rng);
+    amplitude  = ampDist(rng);
 }
 
 float Sampler::sim_value(float t) {
-    // If we've advanced past the current cycle, start a new one
-    while (t >= cycle_start_ + period_) {
-        cycle_start_ += period_;
-        period_       = period_dist_(rng_);
-        amp_          = amp_dist_(rng_);
+    // advance through any full cycles
+    while (t >= cycleStart + period) {
+        cycleStart += period;
+        period      = periodDist(rng);
+        amplitude   = ampDist(rng);
     }
-    // compute angle in [0,2π]
-    float theta = 2.0f * static_cast<float>(M_PI) * (t - cycle_start_) / period_;
-    return amp_ * std::sin(theta);
+    // compute normalized phase in [0, 2π)
+    float theta = 2.0f * static_cast<float>(M_PI) *
+                  (t - cycleStart) / period;
+    return amplitude * std::sin(theta);
 }
 
 } // namespace myextension
-
